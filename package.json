@@ -1,0 +1,59 @@
+{
+  "name": "electron-vue-vite",
+  "version": "2.0.0",
+  "description": "Really simple Electron + Vue + Vite boilerplate.",
+  "author": "草鞋没号 <308487730@qq.com>",
+  "license": "MIT",
+  "private": true,
+  "main": "dist/server/main.js",
+  "keywords": [
+    "electron",
+    "rollup",
+    "vite",
+    "vue3",
+    "vue"
+  ],
+  "debug": {
+    "env": {
+      "VITE_DEV_SERVER_URL": "http://127.0.0.1:3344/"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "preview": "vite preview",
+    "build": "vite build && prisma generate && tsc --build && node copy-files.js && node install-engines-on-mac.js",
+    "start": "npm run build && cross-env NODE_ENV=development electron .",
+    "pack": "npm run build && electron-builder --dir",
+    "dist": "npm run build && electron-builder",
+    "publish": "npm run build && dotenv -- electron-builder -p always"
+  },
+  "devDependencies": {
+    "@babel/types": "^7.20.7",
+    "@types/node": "^18.11.17",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
+    "dotenv-cli": "^6.0.0",
+    "electron": "^22.0.3",
+    "electron-builder": "^23.6.0",
+    "electron-notarize": "^1.2.1",
+    "fs-extra": "^11.1.0",
+    "replace-in-file": "^6.3.5",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.4",
+    "vite-plugin-electron": "^0.11.1",
+    "vite-plugin-electron-renderer": "^0.11.4",
+    "vue": "^3.2.45",
+    "vue-tsc": "^1.0.24"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.7.1",
+    "@prisma/engines": "^4.9.0",
+    "@trpc/client": "^10.5.0",
+    "@trpc/server": "^10.5.0",
+    "electron-log": "^4.4.8",
+    "prisma": "^4.7.1",
+    "superjson": "^1.12.1",
+    "zod": "^3.20.2"
+  }
+}
